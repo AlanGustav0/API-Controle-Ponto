@@ -3,7 +3,6 @@ package com.project.api.controlpoint.controller;
 import com.project.api.controlpoint.model.WorkJourney;
 import com.project.api.controlpoint.service.JourneyService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,15 +36,12 @@ public class WorkJourneyController {
         return journeyService.updateJourney(workJourney);
     }
 
+
     //Deleta o objeto através do Id
     @DeleteMapping("/{idJourney}")
     public ResponseEntity deleteJourneyById(@PathVariable("idJourney") Long idJourney) throws Exception {
-        try{
-            journeyService.deleteJourneyById(idJourney);
-        }catch(Exception e){
-            System.out.println(e.getMessage());
-        }
-        return (ResponseEntity<WorkJourney>) ResponseEntity.ok();
+        journeyService.deleteJourneyById(idJourney);
+        return ResponseEntity.ok().body("The Work Journey id: " + idJourney + " has been deleted");
     }
 
 
